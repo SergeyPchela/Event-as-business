@@ -160,53 +160,57 @@ export default function App() {
               <p className="text-zinc-500 uppercase text-xs font-bold tracking-[0.3em]">от продакшена к экономике</p>
             </div>
             
-            <div className="overflow-x-auto -mx-6 px-6 no-scrollbar">
-              <div className="space-y-2 min-w-[760px] md:min-w-0 pb-4">
-                {/* Header */}
-                <div className="grid grid-cols-[1fr_2fr_2fr] gap-6 py-6 px-8 border-b border-zinc-900/10 items-end">
-                  <div className="text-[9px] uppercase font-bold tracking-[0.4em] text-zinc-400">Измерение</div>
-                  <div className="text-[9px] uppercase font-bold tracking-[0.4em] text-zinc-400">Устаревшая модель</div>
-                  <div className="text-[9px] uppercase font-bold tracking-[0.4em] text-[#C27E33]">Модель Архитектора</div>
-                </div>
-                
-                {/* Rows */}
-                {[
-                  { d: "Фокус", old: "Сделать красиво. Акцент на визуальной части и «вау-эффекте» без привязки к бизнес-задаче.", new: "Сделать работающим. Дизайн как функция, обслуживающая механику продаж и путь клиента." },
-                  { d: "Бюджет", old: "Продакшн и декорации. Основные траты уходят в то, что гости увидят один раз и забудут.", new: "Путь клиента и механику. Инвестиции в точки касания, которые превращают зрителя в покупателя." },
-                  { d: "Участник", old: "Пассивный зритель. Человек потребляет контент, но не взаимодействует с системой.", new: "Активный элемент. Участник встроен в воронку через интерактив и целевые действия." },
-                  { d: "Цикл", old: "Короткий. Результат мероприятия оценивается в день его завершения по эмоциям гостей.", new: "Бесконечный. Мероприятие — это лишь вход в долгосрочную систему отношений и продаж." },
-                  { d: "Итог", old: "Чистые расходы. Строка в бюджете, которая редко окупается напрямую.", new: "Инвестиционный актив. Понятный ROI, рост базы и системные продажи после события.", highlight: true }
-                ].map((row, i) => (
-                  <div 
-                    key={i} 
-                    className={`grid grid-cols-[1fr_2fr_2fr] gap-6 py-10 px-8 items-center transition-all duration-500 group ${
-                      row.highlight 
-                      ? "bg-[#1A1A1A] text-white shadow-2xl relative z-10 scale-[1.01] border border-zinc-800" 
-                      : "hover:bg-white border-b border-zinc-900/5"
-                    }`}
-                  >
-                    <div className={`font-mono text-[9px] uppercase tracking-[0.2em] relative ${row.highlight ? 'text-white/40' : 'text-zinc-400'}`}>
-                      <div className="flex items-center gap-2">
-                        <span className="w-1.5 h-[1px] bg-current" />
-                        {row.d}
-                      </div>
+            <div className="space-y-4 md:space-y-2">
+              {/* Desktop Header - hidden on mobile */}
+              <div className="hidden md:grid grid-cols-[120px_1fr_1fr] gap-6 py-6 px-8 border-b border-zinc-900/10 items-end">
+                <div className="text-[9px] uppercase font-bold tracking-[0.4em] text-zinc-400">Измерение</div>
+                <div className="text-[9px] uppercase font-bold tracking-[0.4em] text-zinc-400">Устаревшая модель</div>
+                <div className="text-[9px] uppercase font-bold tracking-[0.4em] text-[#C27E33]">Модель Архитектора</div>
+              </div>
+              
+              {/* Rows / Cards */}
+              {[
+                { d: "Фокус", old: "Сделать красиво. Акцент на визуальной части и «вау-эффекте» без привязки к бизнес-задаче.", new: "Сделать работающим. Дизайн как функция, обслуживающая механику продаж и путь клиента." },
+                { d: "Бюджет", old: "Продакшн и декорации. Основные траты уходят в то, что гости увидят один раз и забудут.", new: "Путь клиента и механику. Инвестиции в точки касания, которые превращают зрителя в покупателя." },
+                { d: "Участник", old: "Пассивный зритель. Человек потребляет контент, но не взаимодействует с системой.", new: "Активный элемент. Участник встроен в воронку через интерактив и целевые действия." },
+                { d: "Цикл", old: "Короткий. Результат мероприятия оценивается в день его завершения по эмоциям гостей.", new: "Бесконечный. Мероприятие — это лишь вход в долгосрочную систему отношений и продаж." },
+                { d: "Итог", old: "Чистые расходы. Строка в бюджете, которая редко окупается напрямую.", new: "Инвестиционный актив. Понятный ROI, рост базы и системные продажи после события.", highlight: true }
+              ].map((row, i) => (
+                <div 
+                  key={i} 
+                  className={`flex flex-col md:grid md:grid-cols-[120px_1fr_1fr] gap-4 md:gap-6 py-8 md:py-10 px-6 md:px-8 items-start md:items-center transition-all duration-500 group ${
+                    row.highlight 
+                    ? "bg-[#1A1A1A] text-white shadow-2xl relative z-10 md:scale-[1.01] border border-zinc-800" 
+                    : "bg-white md:bg-transparent md:hover:bg-white border-b border-zinc-900/5 md:border-b-zinc-900/5"
+                  }`}
+                >
+                  {/* Label (Measuring point) */}
+                  <div className={`font-mono text-[9px] uppercase tracking-[0.2em] relative ${row.highlight ? 'text-white/40' : 'text-zinc-400'} mb-2 md:mb-0`}>
+                    <div className="flex items-center gap-2">
+                      <span className="w-1.5 h-[1px] bg-current" />
+                      {row.d}
                     </div>
-                    <div className={`text-sm leading-relaxed pr-8 ${row.highlight ? 'text-zinc-400' : 'text-zinc-500 italic'}`}>
+                  </div>
+
+                  {/* Old Model Column */}
+                  <div className="flex flex-col space-y-1 md:block">
+                    <span className="md:hidden text-[8px] uppercase font-bold tracking-[0.2em] text-zinc-400/60 mb-1">Устаревшая:</span>
+                    <div className={`text-sm leading-relaxed ${row.highlight ? 'text-zinc-400' : 'text-zinc-500 italic'}`}>
                       {row.old}
                     </div>
+                  </div>
+
+                  {/* New Architecture Column */}
+                  <div className="flex flex-col space-y-1 md:block">
+                    <span className="md:hidden text-[8px] uppercase font-bold tracking-[0.2em] text-[#C27E33]/60 mb-1">Архитектор:</span>
                     <div className={`text-sm md:text-base font-medium leading-relaxed group-hover:translate-x-1 transition-transform ${row.highlight ? 'text-[#C27E33] font-bold' : 'text-zinc-900'}`}>
                       {row.new}
                     </div>
                   </div>
-                ))}
-              </div>
+                </div>
+              ))}
             </div>
-            {/* Mobile usage hint */}
-            <div className="md:hidden mt-4 flex items-center justify-center gap-2 text-[9px] uppercase tracking-widest text-zinc-400">
-              <ArrowRight size={10} className="animate-pulse" />
-              <span>Листайте таблицу вправо</span>
-              <ArrowRight size={10} className="animate-pulse rotate-180" />
-            </div>
+
           </motion.div>
         </div>
       </section>
